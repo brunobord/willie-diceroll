@@ -1,5 +1,6 @@
 import re
-REGEXP = re.compile(r"(?P<nb>\d*)d(?P<sides>\d+)?(?P<modifier>[+-]\d+)?$")  # noqa
+REGEXP = re.compile(
+    r"(?P<nb>\d*)d(?P<sides>\d+)?(?P<modifier>[+-]\d+)?$")
 
 
 class Roll(object):

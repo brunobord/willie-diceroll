@@ -1,13 +1,13 @@
 # coding: utf8
 """
-diceroll.py - Willie Direcroll Module
+diceroll.py - Sopel Direroll Module
 Copyright 2014, Bruno Bord
 Licensed under the WTFPL.
 
 """
 from __future__ import unicode_literals, absolute_import
 
-from willie.module import commands
+from sopel.module import commands
 
 import re
 from rdoclient import RandomOrgClient
