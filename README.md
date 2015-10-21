@@ -1,6 +1,6 @@
 # Diceroll
 
-Willie extension that rolls dice using [Random.org](http://random.org) API.
+Sopel extension that rolls dice using [Random.org](http://random.org) API.
 
 ## Install
 
@@ -8,11 +8,11 @@ Install dependencies:
 
     pip install -r requirements.txt
 
-Add the directory into your willie config file.
+Add the directory into your sopel config file.
 
 ## Configure
 
-    willie --configure-modules
+    sopel --configure-modules
 
 Fill your API key in. Result.
 
