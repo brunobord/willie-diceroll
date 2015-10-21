@@ -83,11 +83,15 @@ def roll(bot, trigger):
     rolls = r.generate_integers(nb, 1, sides)
     total = sum(rolls) + modifier
     roll_list = " + ".join(map(str, rolls))
-    msg = "Your rolls: %s" % roll_list
+    if nb == 1:
+        msg = "Your roll: %s" % roll_list
+    else:
+        msg = "Your rolls: %s" % roll_list
     if modifier:
         if modifier > 0:
             msg += " (+%d)" % modifier
         else:
             msg += " (%d)" % modifier
-    msg += " = %d" % total
+    if nb > 1:
+        msg += " = %d" % total
     bot.reply(msg)
