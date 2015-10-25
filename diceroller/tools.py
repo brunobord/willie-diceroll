@@ -15,7 +15,8 @@ class Roll(object):
     def parse(expr):
         parsed = REGEXP.match(expr)
         if not parsed:
-            raise BadlyFormedExpression(u"Impossible to parse {}".format(expr))
+            raise BadlyFormedExpression(
+                u"Invalid dice expression: `{}`".format(expr))
         groupdict = parsed.groupdict()
         nb = int(groupdict['nb']) if groupdict['nb'] else 1
         sides = int(groupdict['sides']) if groupdict['sides'] else 6  # noqa
