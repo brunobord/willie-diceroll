@@ -68,7 +68,8 @@ class DiceResult(object):
                 result = result + ' (+{})'.format(self.modifier)
             else:
                 result = result + ' ({})'.format(self.modifier)
-        result = result + ' = {}'.format(self.sum)
+        if len(self.dicelist) > 1:
+            result = result + ' = {}'.format(self.sum)
         return result
 
 
