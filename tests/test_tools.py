@@ -43,3 +43,17 @@ def test_tools_hellish():
 
     with pytest.raises(BadlyFormedExpression):
         Roll.parse('2')
+
+
+def test_fudge():
+    nb, sides, modifier = Roll.parse('df')
+    assert (nb, sides, modifier) == (4, 'F', 0)
+
+    nb, sides, modifier = Roll.parse('2df')
+    assert (nb, sides, modifier) == (2, 'F', 0)
+
+    nb, sides, modifier = Roll.parse('dF')
+    assert (nb, sides, modifier) == (4, 'F', 0)
+
+    nb, sides, modifier = Roll.parse('2dF')
+    assert (nb, sides, modifier) == (2, 'F', 0)

@@ -33,6 +33,9 @@ def roll(bot, trigger):
         bot.reply("Can't roll dice")
         return
     nb, sides, modifier = result
+    if sides == 'F':
+        bot.reply("Not implemented yet")
+        return
     r = RandomOrgClient(bot.config.diceroll.api_key)
     rolls = r.generate_integers(nb, 1, sides)
     total = sum(rolls) + modifier
