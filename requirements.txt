@@ -1,2 +1,3 @@
+sopel
 rdoclient
 requests
