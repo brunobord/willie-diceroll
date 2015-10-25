@@ -10,7 +10,7 @@ from __future__ import unicode_literals, absolute_import
 from sopel.module import commands
 from rdoclient import RandomOrgClient
 
-from .tools import Roll, BadlyFormedExpression
+from .tools import RollParser, BadlyFormedExpression
 
 
 def configure(config):
@@ -27,7 +27,7 @@ def roll(bot, trigger):
     """Roll the dice"""
     expr = trigger.group(2)
     try:
-        result = Roll.parse(expr)
+        result = RollParser.parse(expr)
     except BadlyFormedExpression, exc:
         bot.reply(exc)
         bot.reply("Can't roll dice")

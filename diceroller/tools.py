@@ -10,8 +10,7 @@ class BadlyFormedExpression(Exception):
     """
 
 
-
-class Roll(object):
+class RollParser(object):
 
     @staticmethod
     def nb(groupnb, sides):
@@ -31,6 +30,6 @@ class Roll(object):
             sides = int(groupdict['sides']) if groupdict['sides'] else 6  # noqa
         else:
             sides = 'F'
-        nb = Roll.nb(groupdict['nb'], sides)
+        nb = RollParser.nb(groupdict['nb'], sides)
         modifier = int(groupdict['modifier']) if groupdict['modifier'] else 0  # noqa
         return nb, sides, modifier
