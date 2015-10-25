@@ -23,7 +23,18 @@ def configure(config):
 
 @commands('roll')
 def roll(bot, trigger):
-    """Roll the dice"""
+    """
+Roll the dice.
+By default, it rolls 6-side-dice.
+
+e.g:
+.roll 3d
+.roll 2d6-1
+.roll 3d10+5
+
+It can also roll Fudge dice:
+.roll df
+"""
     expr = trigger.group(2)
     try:
         result = RollParser.parse(expr)
