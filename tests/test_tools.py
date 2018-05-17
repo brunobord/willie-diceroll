@@ -1,6 +1,9 @@
 # -*- coding: utf8 -*-
 import pytest
-from diceroller.tools import RollParser, BadlyFormedExpression
+from diceroller.tools import (
+    MAX_SIDES, MAX_DICE_NUMBER,
+    RollParser, BadlyFormedExpression,
+)
 
 
 def test_tools():
@@ -33,7 +36,7 @@ def test_0d():
 
 def test_too_many_dice():
     with pytest.raises(BadlyFormedExpression):
-        RollParser.parse('{}d6'.format(10001))
+        RollParser.parse('{}d6'.format(MAX_DICE_NUMBER+1))
 
 
 def test_tools_hellish():
@@ -64,3 +67,8 @@ def test_fudge():
 def test_d1():
     with pytest.raises(BadlyFormedExpression):
         RollParser.parse('1d1')
+
+
+def test_too_many_sides():
+    with pytest.raises(BadlyFormedExpression):
+        RollParser.parse('1d{}'.format(MAX_SIDES+1))

@@ -8,6 +8,8 @@ REGEXP = re.compile(
 
 FUDGE_FACES = (' ', '+', '-')
 FUDGE_SCORES = {' ': 0, '+': 1, '-': -1}
+MAX_SIDES = 1000000000
+MAX_DICE_NUMBER = 10000
 
 
 class BadlyFormedExpression(Exception):
@@ -39,7 +41,7 @@ class RollParser(object):
         groupdict = parsed.groupdict()
         if groupdict['sides'] not in ('f', 'F'):
             sides = int(groupdict['sides']) if groupdict['sides'] else 6  # noqa
-            if sides <= 1:
+            if not 1 < sides <= 1000000000:
                 raise BadlyFormedExpression(
                     u"Invalid dice expression: `{}`".format(expr)
                 )
@@ -48,7 +50,7 @@ class RollParser(object):
 
         nb = RollParser.nb(groupdict['nb'], sides)
 
-        if not 1 <= nb <= 10000:
+        if not 1 <= nb <= MAX_DICE_NUMBER:
             raise BadlyFormedExpression(
                 u"Invalid dice expression: `{}`".format(expr)
             )
