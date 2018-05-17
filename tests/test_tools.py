@@ -10,9 +10,6 @@ def test_tools():
     nb, sides, modifier = RollParser.parse('2d')
     assert (nb, sides, modifier) == (2, 6, 0)
 
-    nb, sides, modifier = RollParser.parse('2d1')
-    assert (nb, sides, modifier) == (2, 1, 0)
-
     nb, sides, modifier = RollParser.parse('d6')
     assert (nb, sides, modifier) == (1, 6, 0)
 
@@ -26,12 +23,17 @@ def test_tools():
     assert (nb, sides, modifier) == (2, 6, 0)
 
 
-def test_tools_tricks():
-    nb, sides, modifier = RollParser.parse('0d6')
-    assert (nb, sides, modifier) == (0, 6, 0)
+def test_0d():
+    with pytest.raises(BadlyFormedExpression):
+        RollParser.parse('0d6')
 
-    nb, sides, modifier = RollParser.parse('0d0')
-    assert (nb, sides, modifier) == (0, 0, 0)
+    with pytest.raises(BadlyFormedExpression):
+        RollParser.parse('0d0')
+
+
+def test_too_many_dice():
+    with pytest.raises(BadlyFormedExpression):
+        RollParser.parse('{}d6'.format(10001))
 
 
 def test_tools_hellish():
@@ -57,3 +59,8 @@ def test_fudge():
 
     nb, sides, modifier = RollParser.parse('2dF')
     assert (nb, sides, modifier) == (2, 'F', 0)
+
+
+def test_d1():
+    with pytest.raises(BadlyFormedExpression):
+        RollParser.parse('1d1')

@@ -39,9 +39,20 @@ class RollParser(object):
         groupdict = parsed.groupdict()
         if groupdict['sides'] not in ('f', 'F'):
             sides = int(groupdict['sides']) if groupdict['sides'] else 6  # noqa
+            if sides <= 1:
+                raise BadlyFormedExpression(
+                    u"Invalid dice expression: `{}`".format(expr)
+                )
         else:
             sides = 'F'
+
         nb = RollParser.nb(groupdict['nb'], sides)
+
+        if not 1 <= nb <= 10000:
+            raise BadlyFormedExpression(
+                u"Invalid dice expression: `{}`".format(expr)
+            )
+
         modifier = int(groupdict['modifier']) if groupdict['modifier'] else 0  # noqa
         return nb, sides, modifier
 
